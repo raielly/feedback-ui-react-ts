@@ -18,7 +18,7 @@ const FeedbackForm = () => {
   const [message, setMessage] = useState<string>("");
   const [btnDisabled, setBtnDisabled] = useState<boolean>(true);
 
-  const { feedbacks, addFeedback, updateFeedback, feedbackEdit } =
+  const { addFeedback, updateFeedback, feedbackEdit } =
     useContext<any>(FeedbackContext);
 
   useEffect(() => {

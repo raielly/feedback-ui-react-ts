@@ -3,7 +3,7 @@ import { Feedback } from "@/types/types";
 import { useContext } from "react";
 
 import { Button } from "./ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
+import { Card, CardContent, CardHeader } from "./ui/card";
 
 const FeedbackLists = () => {
   const { feedbacks, editFeedback, deleteFeedback } =
