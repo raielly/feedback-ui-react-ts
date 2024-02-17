@@ -4,7 +4,7 @@ This project was bootstrapped with [Vite](https://vitejs.dev/)
 
 ## Description
 
-- This project is built using React, TypeScript, Tailwind CSS, shadcn/ui, and a mock REST api with json-server. Its purpose is to gather feedback from users, providing functionality to add, update, and delete feedback.
+- This project is built using React, TypeScript, Tailwind CSS, shadcn/ui, and local storage. Its purpose is to gather feedback from users, providing functionality to add, update, and delete feedback.
 
 ## Demo Link
 
