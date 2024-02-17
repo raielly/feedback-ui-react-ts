@@ -16,7 +16,7 @@ This project was bootstrapped with [Vite](https://vitejs.dev/)
 
 ![Landing Page](https://raw.githubusercontent.com/raielly/feedback-ui-react-ts/master/screenshots/Feedback-UI.png)
 
-# How to Run
+## How to Run
 
 ```bash
 git clone https://github.com/raielly/feedback-ui-react-ts.git
