@@ -63,6 +63,13 @@ const FeedbackForm = () => {
     setBtnDisabled(true);
     setSelected(5);
     setMessage("");
+    console.log("trigger");
+  };
+
+  const handleCancelUpdate = () => {
+    setBtnDisabled(true);
+    setSelected(5);
+    setMessage("");
   };
 
   return (
@@ -83,9 +90,19 @@ const FeedbackForm = () => {
           </CardContent>
           <CardFooter>
             {feedbackEdit.edit === true ? (
-              <Button className='w-full' size={"lg"} disabled={btnDisabled}>
-                Update
-              </Button>
+              <div className='w-full flex gap-2'>
+                <Button className='grow' size={"lg"} disabled={btnDisabled}>
+                  Update
+                </Button>
+                <Button
+                  onClick={() => handleCancelUpdate()}
+                  variant={"ghost"}
+                  size={"lg"}
+                  disabled={btnDisabled}
+                >
+                  Cancel
+                </Button>
+              </div>
             ) : (
               <Button className='w-full' size={"lg"} disabled={btnDisabled}>
                 Send

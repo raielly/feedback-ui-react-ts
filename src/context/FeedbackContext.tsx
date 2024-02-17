@@ -5,51 +5,41 @@ export const FeedbackContext = createContext<FeedbackContextType | undefined>(
   undefined
 );
 
+const LOCAL_STORAGE_KEY = "feedback-list";
+
 export const FeedbackProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [feedbacks, setFeedbacks] = useState<Feedback[]>([]);
+  const [feedbacks, setFeedbacks] = useState<Feedback[]>(() => {
+    const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        return parsed || [];
+      } catch (err) {
+        console.error("Error parsing JSON:", err);
+        return [];
+      }
+    }
+    return [];
+  });
   const [feedbackEdit, setFeedbackEdit] = useState<any>({
     item: {},
     edit: false,
   });
 
   useEffect(() => {
-    fetchFeedback();
-  }, []);
+    //fetchFeedback();
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(feedbacks));
+  }, [feedbacks]);
 
-  const fetchFeedback = async (): Promise<void> => {
-    const response = await fetch(import.meta.env.VITE_API_URL);
-    const data: Feedback[] = await response.json();
-    setFeedbacks(data);
+  const addFeedback = (feedback: Feedback) => {
+    setFeedbacks([...feedbacks, feedback]);
   };
 
-  const addFeedback = async (feedback: Feedback): Promise<void> => {
-    const response = await fetch(import.meta.env.VITE_API_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(feedback),
-    });
-    const data: Feedback = await response.json();
-    setFeedbacks([...feedbacks, data]);
-  };
-
-  const updateFeedback = async (
-    id: string,
-    updItem: Feedback
-  ): Promise<void> => {
-    const response = await fetch(`${import.meta.env.VITE_API_URL}/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(updItem),
-    });
-    const data: Feedback[] = await response.json();
+  const updateFeedback = (id: string, updItem: Feedback) => {
     setFeedbacks(
-      feedbacks.map((item) => (item.id === id ? { ...item, ...data } : item))
+      feedbacks.map((item) => (item.id === id ? { ...item, ...updItem } : item))
     );
 
     setFeedbackEdit({
@@ -65,11 +55,8 @@ export const FeedbackProvider: React.FC<{ children: React.ReactNode }> = ({
     });
   };
 
-  const deleteFeedback = async (id: string): Promise<void> => {
+  const deleteFeedback = (id: string) => {
     if (window.confirm("Are you sure you want to delete?")) {
-      await fetch(`${import.meta.env.VITE_API_URL}/${id}`, {
-        method: "DELETE",
-      });
       setFeedbacks(feedbacks.filter((item) => item.id !== id));
     }
   };

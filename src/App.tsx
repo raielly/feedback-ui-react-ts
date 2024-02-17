@@ -11,12 +11,12 @@ function App() {
   return (
     <>
       <FeedbackProvider>
-        <ThemeProvider defaultTheme='system' storageKey='vite-ui-theme'>
+        <ThemeProvider defaultTheme='dark' storageKey='vite-ui-theme'>
           <div className='flex flex-col justify-between h-screen'>
             <Card className='p-5 mb-10 text-center rounded-none'>
               <CardTitle>Feedback UI</CardTitle>
             </Card>
-            <div className='w-96 mx-auto'>
+            <div className='p-5 md:p-0 w-full md:w-96 mx-auto'>
               <FeedbackForm />
               <FeedbackStatus />
               <FeedbackLists />
