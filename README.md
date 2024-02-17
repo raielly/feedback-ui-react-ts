@@ -8,7 +8,7 @@ This project was bootstrapped with [Vite](https://vitejs.dev/)
 
 ## Demo Link
 
-- [Check out the Project](#)
+- [Check out the Project](https://feedback-ui-react-ts.vercel.app/)
 
 ## Screenshots
 
@@ -27,7 +27,5 @@ npm install
 ```
 
 ```bash
-npm run start
+npm run dev
 ```
-
-This will run JSON-server on port :3000 and React on port :5000
